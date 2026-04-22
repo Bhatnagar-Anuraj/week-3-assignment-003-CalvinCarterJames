@@ -57,7 +57,7 @@ def create_tree( height=5.0, position = (0,0,0)):
     cmds.move(x, height + 3, z, leaves)
     treegrp = cmds.group(leaves, trunk, name = "tree_grp")
     return treegrp
-"""Returns the trunk and leaves variable"""
+"""Returns: the trunk and leaves variable"""
 """
     Args:
         trunk_radius (float): Radius of the cylindrical trunk.
@@ -148,7 +148,7 @@ def create_lamp(pole_height=5, light_radius=0.5, position = (0,0,0)):
 
 def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0), **kwargs):
     results = []
-                #"""Places a give object in a circular arrangement"""
+    """Places a give object in a circular arrangement"""
     for i in range(count):
         angle = 2 * math.pi * i / count
         x = center[0] + radius * math.cos(angle)
