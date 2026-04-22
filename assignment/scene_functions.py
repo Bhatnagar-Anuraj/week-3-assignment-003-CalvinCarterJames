@@ -31,7 +31,7 @@ def create_building(width=3.0, height=5.0, depth=5.0, position=(0,0,0)):
     cmds.move(x, height/2.0, z, building)
     return building
 """returns the building variable"""
-    """
+"""
     The building is a single scaled cube whose base sits at ground level
     (y = 0) at the given position.
 
@@ -58,7 +58,7 @@ def create_tree( height=5.0, position = (0,0,0)):
     treegrp = cmds.group(leaves, trunk, name = "tree_grp")
     return treegrp
 """Returns the trunk and leaves variable"""
-    """
+"""
     Args:
         trunk_radius (float): Radius of the cylindrical trunk.
         trunk_height (float): Height of the trunk cylinder.
@@ -148,7 +148,7 @@ def create_lamp(pole_height=5, light_radius=0.5, position = (0,0,0)):
 
 def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0), **kwargs):
     results = []
-"""Places a give object in a circular arrangement"""
+                #"""Places a give object in a circular arrangement"""
     for i in range(count):
         angle = 2 * math.pi * i / count
         x = center[0] + radius * math.cos(angle)
@@ -157,7 +157,7 @@ def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0), **kwargs)
         results.append(obj)
 
     return results
-    """Place objects created by 'create_func' in a circular arrangement.
+"""Place objects created by 'create_func' in a circular arrangement.
 
     This is a higher-order function: it takes another function as an
     argument and calls it repeatedly to place objects around a circle.
