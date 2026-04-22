@@ -40,8 +40,8 @@ ground = cmds.polyPlane(name="ground", width=60, height=60,
 # Example calls (uncomment and modify once your functions are implemented):
 #
  sf.create_building( 2, 3)
-#   sf.create_tree(position=(3, 0, -5))
-#   sf.create_fence(length=12, post_count=7, position=(-6, 0, -3))
+ sf.create_tree(4, 5)
+ sf.create_fence(length=20, post_count=8, position=(-6, 0, -3))
 #   sf.create_lamp_post(position=(8, 0, 2))
 #
 #   # Place 8 trees in a circle of radius 15:
