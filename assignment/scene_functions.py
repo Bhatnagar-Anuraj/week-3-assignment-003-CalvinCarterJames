@@ -136,7 +136,7 @@ def create_fence(create_func, length=10, height=2, post_count=6, position=(0, 0,
     pass
 
 
-def create_lamp_post(x, z, pole_height=5, light_radius=0.5)
+def create_lamppost(x, z, pole_height=5, light_radius=0.5)
     """Create a street lamp using a cylinder pole and a sphere light."""
     lamp_post = cmds.polycylinder(height = pole_height, radius = light_radius/2.0)
     cmds.move(x, pole_height/2, z, lamp_post)
