@@ -60,7 +60,7 @@ def create_tree(x, z, height=5.0,):
     leaves = cmds.polySphere(radius = 1,)
     cmds.move(x, height + 3, z, leaves)
     treegrp = cmds.group(leaves, trunk, name = "tree_grp")
-    return trunk, leavesd
+    return trunk, leaves
 
     """
     Args:
