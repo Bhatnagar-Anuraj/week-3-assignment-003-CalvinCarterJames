@@ -25,9 +25,13 @@ GRADING CRITERIA:
 import maya.cmds as cmds
 
 
-def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
-    """Create a simple building from a cube, placed on the ground plane.
+def create_buildingg(x, z, width=3.0, height=5.0, depth=5.0):
+    """Create a simple building from a cube, placed on the ground plane."""
+    building = cmds.polyCube(width = width, height = height, depth = depth)
+    cmds.move(x, height/2.0, z, building)
+    return building
 
+    """
     The building is a single scaled cube whose base sits at ground level
     (y = 0) at the given position.
 
@@ -49,10 +53,16 @@ def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
     pass
 
 
-def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
-                position=(0, 0, 0)):
-    """Create a simple tree using a cylinder trunk and a sphere canopy.
+def create_tree(x, z, height=5.0,):
+    """Create a simple tree using a cylinder trunk and a sphere canopy."""
+    trunk = cmds.polyCylinder(radius = .3, height = height / 2.0)
+    cmds.move(x, height / 2.0, z, trunk)
+    leaves = cmds.polySphere(radius = 1,)
+    cmds.move(x, height + 3, z, leaves)
+    treegrp = cmds.group(leaves, trunk, name = "tree_grp")
+    return trunk, leavesd
 
+    """
     Args:
         trunk_radius (float): Radius of the cylindrical trunk.
         trunk_height (float): Height of the trunk cylinder.
@@ -70,11 +80,22 @@ def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
     #   5. Return the group name.
     pass
 
+def create_fencepost( x, z, height = 2, width = 1, depth = 1)
+    post = cmds.polyCube(height = height, width = width, depth = depth)
+    cmds.move(x, height/2, z)
+    return post
+    
+def create_fence(create_func, length=10, height=1.5, post_count=6, position=(0, 0, 0)):
+    spacing = length / (post_count -1)
+    for i in range(0:length:spacing):
+    
+        
+    """Create a simple fence made of posts and rails."""
+    
+    
 
-def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
-    """Create a simple fence made of posts and rails.
-
-    The fence runs along the X axis starting at the given position.
+   """
+   The fence runs along the X axis starting at the given position.
 
     Args:
         length (float): Total length of the fence along the X axis.
@@ -94,9 +115,16 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
     pass
 
 
-def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
-    """Create a street lamp using a cylinder pole and a sphere light.
-
+def create_lamp_post(x, z, pole_height=5, light_radius=0.5)
+    """Create a street lamp using a cylinder pole and a sphere light."""
+    lamp_post = cmds.polycylinder(height = pole_height, radius = light_radius/2.0)
+    cmds.move(x, pole_height/2, z, lamp_post)
+    light = cmds.polySphere(radius = light_radius)
+    cmds.move(x, pole_height + 4, z, light)
+    lampgrp = cmds.group(lamp_post, light, name="lamp_grp")
+    return lampgrp
+    
+    """
     Args:
         pole_height (float): Height of the lamp pole.
         light_radius (float): Radius of the sphere representing the light.
