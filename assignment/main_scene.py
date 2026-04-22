@@ -34,11 +34,7 @@ cmds.file(new=True, force=True)
 ground = cmds.polyPlane(name="ground", width=60, height=60,
                         subdivisionsX=1, subdivisionsY=1)[0]
 
-# ---------------------------------------------------------------------------
-# TODO: Build your scene below by calling functions from scene_functions.
-#
-# Example calls (uncomment and modify once your functions are implemented):
-#
+
  sf.create_building( 2, 3)
  sf.create_tree( 4, 5)
  sf.create_fence(length=20, post_count=8, position=(-6, 0, -3))
