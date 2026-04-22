@@ -148,7 +148,7 @@ def create_lamp(pole_height=5, light_radius=0.5, position = (0,0,0)):
 
 def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0), **kwargs):
     results = []
-    """Places a give object in a circular arrangement"""
+        """Places a give object in a circular arrangement"""
     for i in range(count):
         angle = 2 * math.pi * i / count
         x = center[0] + radius * math.cos(angle)
