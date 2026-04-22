@@ -23,9 +23,9 @@ GRADING CRITERIA:
 """
 
 import maya.cmds as cmds
+import math
 
-
-def create_buildingg(x, z, width=3.0, height=5.0, depth=5.0):
+def create_building(x, z, width=3.0, height=5.0, depth=5.0):
     """Create a simple building from a cube, placed on the ground plane."""
     building = cmds.polyCube(width = width, height = height, depth = depth)
     cmds.move(x, height/2.0, z, building)
@@ -80,14 +80,35 @@ def create_tree(x, z, height=5.0,):
     #   5. Return the group name.
     pass
 
-def create_fencepost( x, z, height = 2, width = 1, depth = 1)
-    post = cmds.polyCube(height = height, width = width, depth = depth)
-    cmds.move(x, height/2, z)
+import maya.cmds as cmds
+
+def create_fencepost(x, z, height=2, width=0.6, depth=0.6):
+    post = cmds.polyCube(height=height, width=width, depth=depth)
+    cmds.move(x, height / 2, z)
     return post
+
+def create_rail(length, y_height, position=(0, 0, 0), thickness=0.6, depth=0.2):
+    rail = cmds.polyCube(width=length, height=thickness, depth=depth)
     
-def create_fence(create_func, length=10, height=1.5, post_count=6, position=(0, 0, 0)):
-    spacing = length / (post_count -1)
-    for i in range(0:length:spacing):
+    
+    x = position[0] + length / 2
+    y = y_height
+    z = position[2]
+    
+    cmds.move(x, y, z)
+    return rail
+
+def create_fence(create_func, length=10, height=2, post_count=6, position=(0, 0, 0)):
+    spacing = length / (post_count - 1)
+    results = []
+ for i in range(post_count):
+        x = position[0] + i * spacing
+        z = position[2]
+        result = create_func(x, z, height=height)
+        results.append(result)
+   create_rail(length=length, y_height=height * 0.6, position=position)
+
+    return results
     
         
     """Create a simple fence made of posts and rails."""
@@ -140,8 +161,17 @@ def create_lamp_post(x, z, pole_height=5, light_radius=0.5)
     pass
 
 
-def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
-                     **kwargs):
+def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0), **kwargs):
+    results = []
+
+    for i in range(count):
+        angle = 2 * math.pi * i / count
+        x = center[0] + radius * math.cos(angle)
+        z = center[2] + radius * math.sin(angle)
+        obj = create_func(position=(x, center[1], z), **kwargs)
+        results.append(obj)
+
+    return results
     """Place objects created by 'create_func' in a circular arrangement.
 
     This is a higher-order function: it takes another function as an
