@@ -80,7 +80,7 @@ def create_tree(x, z, height=5.0,):
     #   5. Return the group name.
     pass
 
-import maya.cmds as cmds
+
 
 def create_fencepost(x, z, height=2, width=0.6, depth=0.6):
     post = cmds.polyCube(height=height, width=width, depth=depth)
@@ -101,12 +101,12 @@ def create_rail(length, y_height, position=(0, 0, 0), thickness=0.6, depth=0.2):
 def create_fence(create_func, length=10, height=2, post_count=6, position=(0, 0, 0)):
     spacing = length / (post_count - 1)
     results = []
- for i in range(post_count):
+    for i in range(post_count):
         x = position[0] + i * spacing
         z = position[2]
         result = create_func(x, z, height=height)
         results.append(result)
-   create_rail(length=length, y_height=height * 0.6, position=position)
+        create_rail(length=length, y_height=height * 0.6, position=position)
 
     return results
     
@@ -115,7 +115,7 @@ def create_fence(create_func, length=10, height=2, post_count=6, position=(0, 0,
     
     
 
-   """
+"""
    The fence runs along the X axis starting at the given position.
 
     Args:
@@ -126,17 +126,17 @@ def create_fence(create_func, length=10, height=2, post_count=6, position=(0, 0,
 
     Returns:
         str: The name of a group node containing all fence parts.
-    """
+"""
     # TODO: Implement this function.
     #   1. Calculate spacing between posts: length / (post_count - 1).
     #   2. Loop to create 'post_count' thin, tall cubes as posts.
     #   3. Create a long, thin cube as a horizontal rail connecting them.
     #   4. Group everything and move to 'position'.
     #   5. Return the group name.
-    pass
+pass
 
 
-def create_lamp(x, z, pole_height=5, light_radius=0.5)
+def create_lamp(x, z, pole_height=5, light_radius=0.5):
     """Create a street lamp using a cylinder pole and a sphere light."""
     lamp_post = cmds.polycylinder(height = pole_height, radius = light_radius/2.0)
     cmds.move(x, pole_height/2, z, lamp_post)
